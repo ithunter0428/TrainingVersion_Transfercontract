@@ -1,0 +1,16 @@
+cargo-features = ["edition2021"]
+
+[package]
+name = "pbc-contract-common"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+reflection = { path = "../rust-reflection/reflection" }
+reflection_derive =  { path = "../rust-reflection/reflection_derive" }
+trees = "0.4.2"
+serde = "1.0.126"
+serde_json = "1.0.64"
+pbc_external = { path = "../pbc_external" }

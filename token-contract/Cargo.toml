@@ -1,0 +1,35 @@
+cargo-features = ["edition2021"]
+
+[package]
+name = "token-contract"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[lib]
+crate-type = ['cdylib']
+
+[dependencies]
+lazy_static = "1.4.0"
+reflection = { path = "../rust-reflection/reflection" }
+reflection_derive =  { path = "../rust-reflection/reflection_derive" }
+pbc-contract-common =  { path = "../common" }
+pbc-contract-codegen =  { path = "../codegen" }
+# Pinned to same as the one used in reflection
+trees = "0.4.2"
+serde = { version = "1.0.126", features = ["derive"] }
+serde_json = "1.0.64"
+
+[profile.release]
+opt-level = 'z'           # Optimize for size
+debug = false
+split-debuginfo = '...'
+debug-assertions = false
+overflow-checks = false
+lto = true                # Link time optimization
+panic = "abort"           # Don't unwind stack when panic occurs
+incremental = false
+codegen-units = 1         # Generate one code unit to allow for more aggressive optimization
+rpath = false
+
